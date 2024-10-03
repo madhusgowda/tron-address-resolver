@@ -8,12 +8,12 @@ import (
 )
 
 const (
-	TRXAddrPrefix = "T"
+	TRXAddrPrefix = "t"
 )
 
 // ResolveAddress resolves a Tron address by decoding its base58 format to hex.
 func ResolveAddress(address string) (string, error) {
-	if !strings.HasPrefix(address, TRXAddrPrefix) {
+	if !strings.HasPrefix(strings.ToLower(address), TRXAddrPrefix) {
 		return address, fmt.Errorf("invalid address: %s", address)
 	}
 	decoded, _, err := base58.CheckDecode(address)
